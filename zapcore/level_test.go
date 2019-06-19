@@ -38,6 +38,7 @@ func TestLevelString(t *testing.T) {
 		DPanicLevel: "dpanic",
 		PanicLevel:  "panic",
 		FatalLevel:  "fatal",
+		EventLevel:  "event",
 		Level(-42):  "Level(-42)",
 	}
 
@@ -60,6 +61,7 @@ func TestLevelText(t *testing.T) {
 		{"dpanic", DPanicLevel},
 		{"panic", PanicLevel},
 		{"fatal", FatalLevel},
+		{"event", EventLevel},
 	}
 	for _, tt := range tests {
 		if tt.text != "" {
@@ -88,6 +90,7 @@ func TestCapitalLevelsParse(t *testing.T) {
 		{"DPANIC", DPanicLevel},
 		{"PANIC", PanicLevel},
 		{"FATAL", FatalLevel},
+		{"EVENT", EventLevel},
 	}
 	for _, tt := range tests {
 		var unmarshaled Level
@@ -110,6 +113,7 @@ func TestWeirdLevelsParse(t *testing.T) {
 		{"Dpanic", DPanicLevel},
 		{"Panic", PanicLevel},
 		{"Fatal", FatalLevel},
+		{"Event", EventLevel},
 
 		// What even is...
 		{"DeBuG", DebugLevel},
@@ -119,6 +123,7 @@ func TestWeirdLevelsParse(t *testing.T) {
 		{"DpAnIc", DPanicLevel},
 		{"PaNiC", PanicLevel},
 		{"FaTaL", FatalLevel},
+		{"EvEnT", EventLevel},
 	}
 	for _, tt := range tests {
 		var unmarshaled Level
@@ -159,7 +164,7 @@ func TestLevelAsFlagValue(t *testing.T) {
 	fs.SetOutput(&buf)
 	fs.Var(&lvl, "level", "log level")
 
-	for _, expected := range []Level{DebugLevel, InfoLevel, WarnLevel, ErrorLevel, DPanicLevel, PanicLevel, FatalLevel} {
+	for _, expected := range []Level{DebugLevel, InfoLevel, WarnLevel, ErrorLevel, DPanicLevel, PanicLevel, FatalLevel, EventLevel} {
 		assert.NoError(t, fs.Parse([]string{"-level", expected.String()}))
 		assert.Equal(t, expected, lvl, "Unexpected level after parsing flag.")
 		assert.Equal(t, expected, lvl.Get(), "Unexpected output using flag.Getter API.")

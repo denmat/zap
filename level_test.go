@@ -24,7 +24,7 @@ import (
 	"sync"
 	"testing"
 
-	"go.uber.org/zap/zapcore"
+	"github.com/denmat/zap/zapcore"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -42,6 +42,7 @@ func TestLevelEnablerFunc(t *testing.T) {
 		{DPanicLevel, false},
 		{PanicLevel, false},
 		{FatalLevel, false},
+		{EventLevel, false},
 	}
 	for _, tt := range tests {
 		assert.Equal(t, tt.enabled, enab.Enabled(tt.level), "Unexpected result applying LevelEnablerFunc to %s", tt.level)
@@ -89,6 +90,7 @@ func TestAtomicLevelText(t *testing.T) {
 		{"dpanic", DPanicLevel, false},
 		{"panic", PanicLevel, false},
 		{"fatal", FatalLevel, false},
+		{"event", EventLevel, false},
 		{"foobar", InfoLevel, true},
 	}
 

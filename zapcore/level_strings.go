@@ -20,7 +20,7 @@
 
 package zapcore
 
-import "go.uber.org/zap/internal/color"
+import "github.com/denmat/zap/internal/color"
 
 var (
 	_levelToColor = map[Level]color.Color{
@@ -31,6 +31,7 @@ var (
 		DPanicLevel: color.Red,
 		PanicLevel:  color.Red,
 		FatalLevel:  color.Red,
+		EventLevel:  color.Red,
 	}
 	_unknownLevelColor = color.Red
 

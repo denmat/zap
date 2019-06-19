@@ -22,7 +22,7 @@ package zap
 
 import (
 	"go.uber.org/atomic"
-	"go.uber.org/zap/zapcore"
+	"github.com/denmat/zap/zapcore"
 )
 
 const (
@@ -44,6 +44,8 @@ const (
 	PanicLevel = zapcore.PanicLevel
 	// FatalLevel logs a message, then calls os.Exit(1).
 	FatalLevel = zapcore.FatalLevel
+	// EventLevel logs a message, then calls os.Exit(1).
+	EventLevel = zapcore.EventLevel
 )
 
 // LevelEnablerFunc is a convenient way to implement zapcore.LevelEnabler with
