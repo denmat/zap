@@ -31,6 +31,7 @@ var (
 		DPanicLevel: color.Red,
 		PanicLevel:  color.Red,
 		FatalLevel:  color.Red,
+		EventLevel:  color.Red,
 	}
 	_unknownLevelColor = color.Red
 
