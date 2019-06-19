@@ -55,7 +55,6 @@ const (
 
 	_minLevel = DebugLevel
 	_maxLevel = EventLevel
-	_maxLevel = FatalLevel
 )
 
 // String returns a lower-case ASCII representation of the log level.

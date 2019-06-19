@@ -42,7 +42,7 @@ func TestLevelEnablerFunc(t *testing.T) {
 		{DPanicLevel, false},
 		{PanicLevel, false},
 		{FatalLevel, false},
-		{EventLevel}, false},
+		{EventLevel, false},
 	}
 	for _, tt := range tests {
 		assert.Equal(t, tt.enabled, enab.Enabled(tt.level), "Unexpected result applying LevelEnablerFunc to %s", tt.level)
