@@ -50,8 +50,11 @@ const (
 	PanicLevel
 	// FatalLevel logs a message, then calls os.Exit(1).
 	FatalLevel
+	// EventLevel logs a message, always
+	EventLevel
 
 	_minLevel = DebugLevel
+	_maxLevel = EventLevel
 	_maxLevel = FatalLevel
 )
 
@@ -72,6 +75,8 @@ func (l Level) String() string {
 		return "panic"
 	case FatalLevel:
 		return "fatal"
+	case EventLevel:
+		return "event"
 	default:
 		return fmt.Sprintf("Level(%d)", l)
 	}
@@ -96,6 +101,8 @@ func (l Level) CapitalString() string {
 		return "PANIC"
 	case FatalLevel:
 		return "FATAL"
+	case EventLevel:
+		return "EVENT"
 	default:
 		return fmt.Sprintf("LEVEL(%d)", l)
 	}
@@ -139,6 +146,8 @@ func (l *Level) unmarshalText(text []byte) bool {
 		*l = PanicLevel
 	case "fatal", "FATAL":
 		*l = FatalLevel
+	case "event", "EVENT":
+		*l = EventLevel
 	default:
 		return false
 	}
